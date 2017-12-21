@@ -9,12 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require('@angular/core');
+const task_1 = require('./model/task');
 let AppComponent = class AppComponent {
+    constructor() {
+        this.tasks = [];
+        this.myArray = [];
+        this.currentTask = new task_1.Task(null, false);
+    }
+    addTask() {
+        let task = new task_1.Task(this.currentTask.content, this.currentTask.completed);
+        this.tasks.push(task);
+        this.currentTask.content = null;
+        //console.log(this.myArray);
+    }
+    removeTask(task) {
+        this.tasks.splice(this.tasks.indexOf(task), 1);
+        console.log("TASKS ARRAY ", this.tasks);
+    }
 };
 AppComponent = __decorate([
     core_1.Component({
+        moduleId: module.id,
         selector: 'my-app',
-        template: '<h1>Hello World</h1>'
+        templateUrl: 'app.component.html',
+        styleUrls: ['app.component.css']
     }), 
     __metadata('design:paramtypes', [])
 ], AppComponent);
